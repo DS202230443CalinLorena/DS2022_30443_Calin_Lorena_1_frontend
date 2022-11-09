@@ -19,7 +19,7 @@ export default function Login() {
 
     const onSubmit= async (e)=>{
         e.preventDefault();
-        const result = await axios.post("http://localhost:8081/login", userDto);
+        const result = await axios.post("http://localhost:8082/login", userDto);
         if(result.data.role == 'ADMIN') {
             navigate(`/admin`);
         }

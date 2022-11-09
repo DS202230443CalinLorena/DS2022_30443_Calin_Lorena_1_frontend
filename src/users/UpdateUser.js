@@ -25,12 +25,12 @@ export default function UpdateUser() {
 
     const onSubmit= async (e)=>{
         e.preventDefault();
-        await axios.put(`http://localhost:8081/user/${userId}`, user);
+        await axios.put(`http://localhost:8082/user/${userId}`, user);
         navigate("/users");
     }
 
     const loadUser = async () => {
-        const result = await axios.get(`http://localhost:8081/user/${userId}`);
+        const result = await axios.get(`http://localhost:8082/user/${userId}`);
         setUser(result.data);
     }
 

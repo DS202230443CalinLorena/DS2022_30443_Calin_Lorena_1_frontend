@@ -15,13 +15,13 @@ export default function ListDevicesByUser() {
     }, []);
 
     const loadDevices = async()=>{
-        const result = await axios.get(`http://localhost:8081/devicesByUserId/${userId}`);
+        const result = await axios.get(`http://localhost:8082/devicesByUserId/${userId}`);
         console.log(result.data);
         setDevices(result.data);
     }
 
     const loadUser = async()=>{
-        const foundUser = await axios.get(`http://localhost:8081/user/${userId}`);
+        const foundUser = await axios.get(`http://localhost:8082/user/${userId}`);
         setUser(foundUser.data);
     }
 

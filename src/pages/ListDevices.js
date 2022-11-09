@@ -13,13 +13,13 @@ export default function ListDevices() {
     }, []);
 
     const loadDevices = async()=>{
-        const result = await axios.get("http://localhost:8081/devices");
+        const result = await axios.get("http://localhost:8082/devices");
         console.log(result.data);
         setDevices(result.data);
     }
 
     const deleteDevice = async (id) => {
-        await axios.delete(`http://localhost:8081/device/${id}`);
+        await axios.delete(`http://localhost:8082/device/${id}`);
         loadDevices();
     }
 

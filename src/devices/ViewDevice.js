@@ -17,7 +17,7 @@ export default function ViewDevice() {
     },[]);
 
     const loadDevice = async () => {
-        const result = await axios.get(`http://localhost:8081/device/${deviceId}`);
+        const result = await axios.get(`http://localhost:8082/device/${deviceId}`);
         setDevice(result.data);
     }
 
