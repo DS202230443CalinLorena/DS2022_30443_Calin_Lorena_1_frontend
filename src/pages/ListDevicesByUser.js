@@ -1,9 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Link, useParams } from 'react-router-dom';
-import SockJS from 'sockjs-client';
+import SockJsClient from 'react-stomp';
 import { toast } from 'react-toastify';
 
+<ToastContainer
+    autoClose={5000}
+    hideProgressBar={true}
+    {...otherPropsFromToastConfigure}
+/>
 export default function ListDevicesByUser() {
 
     const SOCKET_URL = 'http://localhost:8081/stomp';
