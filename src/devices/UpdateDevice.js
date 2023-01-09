@@ -27,12 +27,12 @@ export default function UpdateDevice() {
 
     const onSubmit= async (e)=>{
         e.preventDefault();
-        await axios.put(`http://localhost:8082/device/${deviceId}`, device);
+        await axios.put(`http://localhost:8081/device/${deviceId}`, device);
         navigate("/devices");
     }
 
     const loadDevice = async () => {
-        const result = await axios.get(`http://localhost:8082/device/${deviceId}`);
+        const result = await axios.get(`http://localhost:8081/device/${deviceId}`);
         setDevice(result.data);
     }
 

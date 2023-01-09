@@ -22,7 +22,7 @@ export default function AddUser() {
 
     const onSubmit= async (e)=>{
         e.preventDefault();
-        await axios.post("http://localhost:8082/user", user);
+        await axios.post("http://localhost:8081/user", user);
         navigate("/users");
     }
 

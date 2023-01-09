@@ -13,13 +13,13 @@ export default function ListUsers() {
     }, []);
 
     const loadUsers = async()=>{
-        const result = await axios.get("http://localhost:8082/users");
+        const result = await axios.get("http://localhost:8081/users");
         console.log(result.data);
         setUsers(result.data);
     }
 
     const deleteUser = async (id) => {
-        await axios.delete(`http://localhost:8082/user/${id}`);
+        await axios.delete(`http://localhost:8081/user/${id}`);
         loadUsers();
     }
 

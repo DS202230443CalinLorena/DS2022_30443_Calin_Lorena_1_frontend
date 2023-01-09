@@ -19,7 +19,7 @@ export default function AddDevice() {
 
     useEffect(() =>{
         const fetchData = async ()=>{
-            const response = await fetch(`http://localhost:8082/userrole`);
+            const response = await fetch(`http://localhost:8081/userrole`);
             const newData = await response.json();
             setEmailList(newData);
         };
@@ -34,7 +34,7 @@ export default function AddDevice() {
 
     const onSubmit= async (e)=>{
         e.preventDefault();
-        await axios.post("http://localhost:8082/device", device);
+        await axios.post("http://localhost:8081/device", device);
         console.log(device.address);
         console.log(userEmail);
         navigate("/devices");
