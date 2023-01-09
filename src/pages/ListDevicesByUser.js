@@ -2,13 +2,8 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Link, useParams } from 'react-router-dom';
 import SockJsClient from 'react-stomp';
-import { toast } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 
-<ToastContainer
-    autoClose={5000}
-    hideProgressBar={true}
-    {...otherPropsFromToastConfigure}
-/>
 export default function ListDevicesByUser() {
 
     const SOCKET_URL = 'http://localhost:8081/stomp';
@@ -50,6 +45,7 @@ export default function ListDevicesByUser() {
 
   return (
     <div className='containter'>
+        <ToastContainer />
         <div className='py-4'>
         <h2 className='text-center m-4'>Welcome, {user.name}!</h2>
         <h3 className='text-center m-4'>List of your devices: </h3>
