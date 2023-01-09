@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Link, useParams } from 'react-router-dom';
 
+const jsonrpc = require("jsonrpc-lite");
+
 export default function ListDevicesByUser() {
 
     const [devices, setDevices] = useState([])
@@ -15,13 +17,13 @@ export default function ListDevicesByUser() {
     }, []);
 
     const loadDevices = async()=>{
-        const result = await axios.get(`http://localhost:8082/devicesByUserId/${userId}`);
+        const result = await axios.get(`http://localhost:8081/devicesByUserId/${userId}`);
         console.log(result.data);
         setDevices(result.data);
     }
 
     const loadUser = async()=>{
-        const foundUser = await axios.get(`http://localhost:8082/user/${userId}`);
+        const foundUser = await axios.get(`http://localhost:8081/user/${userId}`);
         setUser(foundUser.data);
     }
 
@@ -57,4 +59,9 @@ export default function ListDevicesByUser() {
         </div>
     </div>
   )
+}
+
+
+export default function sendMessage(to, message){
+    
 }
