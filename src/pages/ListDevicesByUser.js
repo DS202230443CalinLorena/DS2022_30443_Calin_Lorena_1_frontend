@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Link, useParams } from 'react-router-dom';
+import SockJS from 'sockjs-client';
+import { toast } from 'react-toastify';
 
 export default function ListDevicesByUser() {
 
+    const SOCKET_URL = 'http://localhost:8081/stomp';
     const [devices, setDevices] = useState([])
     const [user, setUser] = useState([])
-
+    const [message, setMessage] = useState('');
     const {userId} = useParams();
 
     useEffect(()=>{
@@ -23,6 +26,21 @@ export default function ListDevicesByUser() {
     const loadUser = async()=>{
         const foundUser = await axios.get(`http://localhost:8081/user/${userId}`);
         setUser(foundUser.data);
+    }
+
+    let onMessageReceived = (msg) => {
+        if(msg.correspondingUserId == userId ){
+            // console.log("backend id: " + userId + " frontend id: " + msg.correspondingUserId);
+            notifyExceedDeviceConsumption(msg.message);
+        }
+        else {
+            console.log("Device with id: " + msg.deviceId + " is not associated to this user!");
+            // notifyExceedDeviceConsumption("Device with id: " + msg.deviceId + " is not associated to this user!");
+        }
+    }
+
+    const notifyExceedDeviceConsumption = (message) => {
+        toast(message, { position: toast.POSITION.BOTTOM_CENTER })
     }
 
   return (
@@ -59,6 +77,19 @@ export default function ListDevicesByUser() {
         </table>
         <Link to={"/"} className='btn btn-outline-danger mx-2'>Logout</Link>
         </div>
+
+        <SockJsClient url={SOCKET_URL}
+            topics={['/topic/message']}
+            onConnect={console.log("Connected!!")}
+            onDisconnect={console.log("Disconnected!")}
+            onMessage={msg => 
+                {
+                    onMessageReceived(msg);
+                    console.log(msg);
+                }
+                }
+            debug={false}
+        />
     </div>
   )
 }
