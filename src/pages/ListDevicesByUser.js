@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Link, useParams } from 'react-router-dom';
 
-const jsonrpc = require("jsonrpc-lite");
-
 export default function ListDevicesByUser() {
 
     const [devices, setDevices] = useState([])
@@ -33,6 +31,10 @@ export default function ListDevicesByUser() {
         <h2 className='text-center m-4'>Welcome, {user.name}!</h2>
         <h3 className='text-center m-4'>List of your devices: </h3>
         <br></br>
+        <div>
+            Do you need help? Start a chat with your administrator: 
+            <Link to={'/chat'} className='btn btn-primary mx-2'>Chat</Link>
+        </div>
         <table className="table table-striped">
             <thead>
                 <tr>
@@ -59,9 +61,4 @@ export default function ListDevicesByUser() {
         </div>
     </div>
   )
-}
-
-
-export default function sendMessage(to, message){
-    
 }

@@ -13,6 +13,7 @@ import UpdateUser from './users/UpdateUser';
 import ViewUser from './users/ViewUser';
 import ListDevicesByUser from './pages/ListDevicesByUser';
 import Login from './pages/Login';
+import ChatRoom from './chat/ChatRoom';
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
           <Route exact path="/viewdevice/:deviceId" element={<ViewDevice/>}/>
           <Route exact path="/viewuser/:userId" element={<ViewUser/>}/>
           <Route exact path="/user-devices/:userId" element={<ListDevicesByUser/>}/>
+          <Route exact path="/chat" element={<ChatRoom/>}/>
         </Routes>
       </Router>
       
